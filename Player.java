@@ -23,11 +23,11 @@ public class Player {
 		this.health=(this.health)-1;
 	}
 	
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		Player p= new Player("jean");
 		p.health=2;
 		p.looseHealth();
 		System.out.println(p.verif_health());
 		System.out.println(p.getHealth());
-	}
+	}*/
 }
