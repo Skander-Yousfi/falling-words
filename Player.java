@@ -9,10 +9,7 @@ public class Player {
 	}
 	
 	public boolean verif_health() {
-		if (this.health > 0) {
-			return true;
-		}
-		return false ;
+		return(this.health > 0);
 	}
 	
 	public int getHealth() {
@@ -20,7 +17,7 @@ public class Player {
 	}
 	
 	public void looseHealth() {
-		this.health=(this.health)-1;
+		health -= 1;
 	}
 	
 	/*public static void main(String[] args) {
