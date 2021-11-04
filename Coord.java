@@ -1,4 +1,4 @@
-package acual_project;
+package projet;
 
 public class Coord {
 	private int x;
