@@ -12,6 +12,10 @@ public class Player {
 		return(this.health > 0);
 	}
 	
+	public String getPseudo() {
+		return(pseudo);
+	}
+	
 	public int getHealth() {
 		return health;
 	}
