@@ -17,4 +17,9 @@ public class Coord {
 	public void down () {
 		y -= 1;
 	}
+	
+	//inutile 
+	public boolean equalsCoord(Coord c) {
+		return ((this.getX()==c.getX()) && (this.getY()==c.getY()));
+	}
 }
