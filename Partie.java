@@ -10,6 +10,7 @@ public class Partie {
 	final int LOWER=10; // ordonnee la plus basse a ne pas depasser 
 	private int index=0; //pour parcourir notre tableau de base de mots 
 	private JFrame fenetre;
+	private int score;
 	
 	
 	public Partie(String ps) throws IOException {
