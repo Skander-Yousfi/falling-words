@@ -1,4 +1,4 @@
-package acual_project;
+package projet;
 
 import java.util.Random;
 
@@ -33,4 +33,10 @@ public class Words {
 	public void downWord () {
 		coord.down();
 	}
+	
+	//inutile
+	public boolean equalsWords(Words w) {
+		return ((this.word.equals(w.word)) && (this.points==w.points) && (this.coord.equalsCoord(w.coord)));
+	}
+	
 }
