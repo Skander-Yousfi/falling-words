@@ -8,9 +8,9 @@ public class Partie {
 	private WordList list;
 	private int compteur; // ??
 	private ArrayList<Words> screenWords;
-	final int LOWER=15; // ordonnee la plus basse a ne pas depasser 
+	final int LOWER=14; // ordonnee la plus basse a ne pas depasser 
 	private int index=0; //pour parcourir notre tableau de base de mots 
-	private JFrame fenetre;
+	private FenetreJeu fenetre;
 	private int score;
 	
 	
@@ -38,19 +38,17 @@ public class Partie {
 	    		Words word = list.getWords().get(index);
 	    		screenWords.add(word);
 	    		compteur=0;
-	    }
-		for (Words w : this.screenWords) {
-	    	w.downWord();
-	    	Coord coo = w.getCoord();
-	    	if (coo.getY() < LOWER) { //si un des mots de la liste a l'ecran est plus bas que LOWER
-	    	this.player.looseHealth(); //on enlève une vie 
-	    	screenWords.remove(w);
-	    	compteur++;
 	    	}
-	    }
-		
+		for (Words w : this.screenWords) {
+	    		if (w.getCoord().getY() < LOWER) { //si un des mots de la liste a l'ecran est plus bas que LOWER
+	    			this.player.looseHealth(); //on enlève une vie 
+	    			screenWords.remove(w);
+	    		}
+			else {w.downWord()}
+	    	}
+		compteur++;
 		fenetre.update(screenWords);
-	    }
+	    	}
 	
 	
 	
