@@ -29,6 +29,21 @@ public class Partie {
 	}
 	
 	
+	
+	 
+	public void saveHighScore() throws IOException {
+		String[] save = new String[10];
+		int j=0;
+		for (String line : Files.readAllLines(Paths.get("C:\\Users\\cstav\\Desktop\\sauvegarde.txt"))){ //le document est trié (score le plus elevé en haut, au debut de l'arrayListe
+			save[j]=line;
+			j++;
+		}
+		int i=0;
+		for (String l : save)
+	}//A terminer 
+	
+	
+	
 	public void updatePosition(){ //ou alors renvoit un int (1 si partie continue et 0 si partie terminée)  a verifier dans boucle while et plus besoin du verif_health ?
 		if (compteur==4){
 	    		if( index==(list.getWords().size())-1) {
