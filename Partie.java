@@ -1,13 +1,14 @@
 package projet;
 
 import java.util.ArrayList;
+import java.io.IOException;
 
 public class Partie {
 	private Player player;
 	private WordList list;
 	private int compteur; // ??
 	private ArrayList<Words> screenWords;
-	final int LOWER=10; // ordonnee la plus basse a ne pas depasser 
+	final int LOWER=15; // ordonnee la plus basse a ne pas depasser 
 	private int index=0; //pour parcourir notre tableau de base de mots 
 	private JFrame fenetre;
 	private int score;
