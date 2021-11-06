@@ -16,7 +16,18 @@ public class Words {
 			this.points = 1;
 		}
 		Random random = new Random();
-		this.coord = new Coord(1+random.nextInt(10), 10);
+		this.coord = new Coord(random.nextInt(5), 0);
+	}
+	// Méthode pour créer un mot ou l'on veut sur l'écran : utile pour vérifications mais pas pour le projet en soi.
+	public Words (String mot, int x, int y) {
+		this.word = mot;
+		if (mot.length()>6) {
+			this.points = 2;
+		}
+		else {
+			this.points = 1;
+		}
+		this.coord = new Coord(x,y);
 	}
 	public Words () {
 		this("");
