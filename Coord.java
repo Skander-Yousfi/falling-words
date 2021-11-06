@@ -5,8 +5,8 @@ public class Coord {
 	private int y;
 	
 	public Coord (int a, int b) {
-		this.x = a;
-		this.y = b;
+		x = a;
+		y = b;
 	}
 	public int getX () {
 		return(x);
@@ -15,7 +15,7 @@ public class Coord {
 		return(y);
 	}
 	public void down () {
-		y -= 1;
+		y += 1;
 	}
 	
 	//inutile 
