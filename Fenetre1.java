@@ -32,10 +32,10 @@ public class Fenetre1 implements ActionListener{
 		conteneur.add(t);
 		conteneur.add(button);
 		f.setContentPane(conteneur);
+		f.setVisible(true);
 	}
 	public void actionPerformed(ActionEvent evt) {
-		  Partie p = new Partie(t.getText());
-		  // Problème d'Exception lors de l'appel du constructeur de Partie => à voir
+		  new Partie(t.getText());
 		  f.dispose();
 	}
 }
