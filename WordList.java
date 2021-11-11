@@ -1,5 +1,6 @@
 package projet;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -9,19 +10,29 @@ import java.util.Collections;
 public class WordList {
 	private static ArrayList<Words> words;
 	
-	public WordList() throws IOException{ 
+	public WordList() {
 		words = new ArrayList<Words>();
-		for (String line : Files.readAllLines(Paths.get("/Users/kulesza/Desktop/mots.txt"))){
-			Words l = new Words(line);
-			words.add(l);
+		try{
+			for (String line : Files.readAllLines(Paths.get("/Users/kulesza/Desktop/mots.txt"))){
+				Words l = new Words(line);
+				words.add(l);
+			}
+			System.out.print(words.size());
+			Collections.shuffle(words);
 		}
+	    catch (FileNotFoundException e){
+	    	System.out.print("Le fichier que vous essayez d'ouvrir n'existe pas.");
+	    }
+	    catch (IOException e){
+	    	System.out.print("Problème pendant l'accès au fichier.");
+	    }
 	}
 	public ArrayList<Words> getWords(){
 		return(words);
 	}
-	public void shuffle() {
-		Collections.shuffle(words);
-	}
+//	public void shuffle() {
+//		Collections.shuffle(words);
+//	}
 }
 
 /*QUESTIONS PROF :
@@ -38,35 +49,3 @@ File fichier = new File("D:\\dossier\\fichier.txt");
 File dossier = new File("D:\\dossier"); */
 
 
-
-/* une méthode qui va effectuer une lecture à l'intérieur d'un fichier respectera généralement le schéma suivant :
-
-import java.io.*; 
-
-class Classe1{
-  void lireFichier (String fichier){
-    try{
-      // Suite d'instructions accédant au fichier et
-      // ne s'occupant pas de la gestion des erreurs
-      // Tentative d'ouvrir un fichier
-      // Lecture dans le fichier
-    }
-    catch (FileNotFoundException e){
-      // Exception déclenchée si le fichier n'existe pas
-    }
-    catch (IOException e){
-      // Exception déclenchée si un autre problème survient
-      // pendant l'accès au fichier
-    }
-    finally{
-      // Le bloc finally est toujours exécuté ce qui permet d'être sûr
-      // que la fermeture du fichier sera effectuée
-      try{
-        // Fermeture du fichier si le fichier a été ouvert
-      }
-      catch (IOException e){
-        // Exception déclenchée si un problème survient pendant la fermeture
-      }
-    }
-  }
-}*/
