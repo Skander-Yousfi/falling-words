@@ -1,4 +1,4 @@
-package acual_project;
+package projet;
 
 import java.io.IOException;
 import java.nio.file.Files;
