@@ -7,6 +7,10 @@ import javax.swing.* ;
 public class FenetreJeu extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JTextField text;
+	private JLabel score;
+	private JPanel s;
+	private JLabel health;
+	private JPanel h;
 	private JPanel panel;
 	private JPanel pane;
 	private GridBagConstraints c;
