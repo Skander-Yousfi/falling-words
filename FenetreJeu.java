@@ -23,7 +23,7 @@ public class FenetreJeu extends JFrame {
 		panel = new JPanel(); 
 		panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
 		s = new JPanel();
-		score = new JLabel("Nombre de vies : 0");
+		score = new JLabel("Nombre de points : 0");
 		score.setMaximumSize(new Dimension(400, 50));
 		s.add(score);
 		panel.add(s, Component.CENTER_ALIGNMENT);
