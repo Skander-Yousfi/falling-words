@@ -30,7 +30,7 @@ class CoordTest {
 	@Test
 	void TestCoordDown() throws Exception {
 		a.down();
-		assertEquals(a.getY()+1,y+1);
+		assertEquals(a.getY(),y);
 	}
 
 
