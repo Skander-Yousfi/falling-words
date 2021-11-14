@@ -81,19 +81,25 @@ public class FenetreFin implements ActionListener{
 		pseudo.add(p.getPseudo());
 		sc.add(Integer.toString(score));
 		Integer[] score_int = new Integer[sc.size()] ;
-        int i = 0;
-		for (String myInt : sc) {
-          score_int[i]=Integer.valueOf(myInt); 
-          i++;
-        }
-        Arrays.sort(score_int, Collections.reverseOrder());
-        ArrayList<String> res1 = new ArrayList<String>();
-		for (int s : score_int) {
-			res1.add(pseudo.get(sc.indexOf(Integer.toString(s))));
+		int i = 0;
+			for (String myInt : sc) {
+		  score_int[i]=Integer.valueOf(myInt); 
+		  i++;
 		}
-		ArrayList<String> res2 = new ArrayList<String>();
+		Arrays.sort(score_int, Collections.reverseOrder());
+		ArrayList<String> r1 = new ArrayList<String>();
+		for (int s : score_int) {
+			r1.add(pseudo.get(sc.indexOf(Integer.toString(s))));
+		}
+		ArrayList<String> r2 = new ArrayList<String>();
 		for (int num : score_int) {
-			res2.add(Integer.toString(num));
+			r2.add(Integer.toString(num));
+		}
+		ArrayList<String> res1 = new ArrayList<String>();
+		ArrayList<String> res2 = new ArrayList<String>();
+		for (int k =0; i<10; i++) {
+			res1.add(r1.get(k));
+			res2.add(r2.get(k));
 		}
 		try {
 			BufferedWriter writer = new BufferedWriter(new FileWriter(new File(System.getProperty("user.dir")+"/abcd.txt")));
