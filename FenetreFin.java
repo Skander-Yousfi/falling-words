@@ -50,7 +50,8 @@ public class FenetreFin implements ActionListener{
 		pane.add(b3);
 		f.setContentPane(pane);
 		f.setVisible(true);
-		
+	}
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == b1) {
