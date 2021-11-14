@@ -13,7 +13,7 @@ public class WordList {
 	public WordList() {
 		words = new ArrayList<Words>();
 		try{
-			for (String line : Files.readAllLines(Paths.get("/Users/kulesza/Desktop/mots.txt"))){
+			for (String line : Files.readAllLines(Paths.get(System.getProperty("user.dir")+"/mots.txt"))){
 				Words l = new Words(line);
 				words.add(l);
 			}
