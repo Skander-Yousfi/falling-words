@@ -101,7 +101,7 @@ public class Partie implements ActionListener{
 		else {
 			fenetre.dispose();
 			timer.stop();
-			this.saveScore();
+			//this.saveScore();
 			new FenetreFin(player, score);
 			
 		}
