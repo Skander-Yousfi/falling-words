@@ -35,7 +35,7 @@ class CoordTest {
 	/**
 	 * Test pour vérifier que l'ordonnée soit bien modifiée lors de l'appel de la méthode down
 	 *
-	 * @throws Exception the exception
+	 * @throws Exception
 	 */
 	@Test
 	void TestCoordDown() throws Exception {
