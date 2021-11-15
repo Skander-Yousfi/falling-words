@@ -7,17 +7,16 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class WordList.
+ * La classe WordList
  */
 public class WordList {
 	
-	/** The words. */
+	/** La liste de mots */
 	private static ArrayList<Words> words;
 	
 	/**
-	 * Instantiates a new word list.
+	 * Instantiation d'une nouvelle liste de mots, recuperee du fichier mots.txt
 	 */
 	public WordList() {
 		words = new ArrayList<Words>();
@@ -38,29 +37,15 @@ public class WordList {
 	}
 	
 	/**
-	 * Gets the words.
+	 * Getter de la liste des mots.
 	 *
-	 * @return the words
+	 * @return les mots mots
 	 */
 	public ArrayList<Words> getWords(){
 		return(words);
 	}
-//	public void shuffle() {
-//		Collections.shuffle(words);
-//	}
+
 }
 
-/*QUESTIONS PROF :
-- creer une classe WordList ou bien lire le fichier txt et completer l'ArrayList au debut du main ?
--Que fait "throws" ?  mieux vaut utiliser Try/catch ? Obligation de gerer les exceptions ?
-
-
-
-*/
-// Remarques : 
-
-/* Le caractÃ¨re \ Ã©tant un caractÃ¨re rÃ©servÃ©, il faut le banaliser en le doublant, on remplace donc les \ par \\
-File fichier = new File("D:\\dossier\\fichier.txt");
-File dossier = new File("D:\\dossier"); */
 
 
