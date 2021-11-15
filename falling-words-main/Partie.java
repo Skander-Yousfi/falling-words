@@ -5,55 +5,56 @@ import java.util.ArrayList;
 import javax.swing.Timer;
 import java.util.Random;
 
-// TODO: Auto-generated Javadoc
+
 /**
- * The Class Partie.
+ * La Class Partie
  */
 public class Partie implements ActionListener{
 	
-	/** The player. */
+	/** Joueur associé à la partie */
 	private Player player;
 	
-	/** The list. */
+	/** Liste de mots associée à la partie */
 	private WordList list;
 	
-	/** The compteur. */
+	/** Compteur déterminant la fréquence d'ajout des mots à l'ecran */
 	private int compteur; 
 	
-	/** The screen words. */
+	/** Liste de mots apparaissant à l'ecran */
 	private ArrayList<Words> screenWords; 
 	
-	/** The lower. */
-	final int LOWER = 14; // ordonnee la plus basse a ne pas depasser => utile???
+	/** Ordonnee la plus basse que peut avoir un mot à l'écran, avant que celui-ci ne disparaisse */
+	final int LOWER = 14; 
 	
-	/** The index. */
-	private int index = 0; //pour parcourir notre tableau de base de mots 
+	/** Permet de parcourir notre tableau de base de mots */
+	private int index = 0; //
 	
-	/** The fenetre. */
+	/** Fenêtre de jeu affichant l'écran de jeu */
 	private FenetreJeu fenetre;
 	
-	/** The timer. */
+	/** Le timer qui à chaque "tic" actualise les données de la fêntre de jeu */
 	private Timer timer;
 	
-	/** The score. */
+	/** Score du joueur */
 	private int score = 0;
 	
-	/** The word to remove. */
+	/** Mot à retirer de la liste de mots affichés à l'écran lors du parcours de celle-ci */
 	private Words wordToRemove;
 	
-	/** The etape. */
+	/** Variable permettant d'établir la vitesse de descente des mots à l'écran */
 	private int etape = 0;
 	
-	/** The add. */
+	/** Valeur aléatoire comprise entre 1 et 4 telle que lorsque (compteur == add), 
+	un nouveau mot est ajouté à l'ecran et add prend une nouvelle valeur générée aléatoirement.*/
 	private int add = 1;
 	
-	/** The r. */
+	/** Objet de la classe Random permettant de générer la valeur aléatoire de "add" */
 	private Random r = new Random();
 	
 	/**
-	 * Instantiates a new partie.
+	 * Instanciation d'une nouvelle partie
 	 *
-	 * @param ps the ps
+	 * @param ps (pseudo)
 	 */
 	public Partie(String ps) {
 		compteur=0;
@@ -69,7 +70,7 @@ public class Partie implements ActionListener{
 	}
 
 	/**
-	 * Update position.
+	 * Actualisation de la position des mots à l'écran
 	 */
 	public void updatePosition(){ 
 		for (Words w : screenWords) {
@@ -138,10 +139,10 @@ public class Partie implements ActionListener{
 	}
 	
 	/**
-	 * Verif word.
+	 * Verifie que le mot saisie par l'utilisateur est bien un mot de la liste de mots apparaissant à l'écran
 	 *
-	 * @param word the word
-	 * @return the words
+	 * @param word (mot saisie par l'utilisateur)
+	 * @return l'objet de type Word contenu dans screenWords
 	 */
 	public Words verif_word(String word) {
 		Words res = null;
@@ -154,27 +155,27 @@ public class Partie implements ActionListener{
 	}
 	
 	/**
-	 * Adds the to score.
+	 * Incrementation du score du joueur après la saisie correcte d'un mot
 	 *
-	 * @param a the a
+	 * @param a (nombre de points associés au mot correctement saisie) 
 	 */
 	public void addToScore(int a) {
 		score += a;
 	}
 	
 	/**
-	 * Removes the word.
+	 * Retire un mot de la liste de mots apparaissant à l'écran 
 	 *
-	 * @param w the w
+	 * @param w (mot qu'il faut retirer)
 	 */
 	public void removeWord(Words w) {
 		screenWords.remove(w);
 	}
 	
 	/**
-	 * Action performed.
+	 * Donne l'action à réaliser à chaque "tic" du timer (ici, actualisation de la position des mots à l'écran)
 	 *
-	 * @param e the e
+	 * @param e 
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -182,7 +183,7 @@ public class Partie implements ActionListener{
 	}
 	
 	/**
-	 * Gets the frame.
+	 * Lance la fenêtre de jeu
 	 *
 	 * @return the frame
 	 */
@@ -191,27 +192,27 @@ public class Partie implements ActionListener{
 	}
 	
 	/**
-	 * Gets the player.
+	 * Getter des données du joueur
 	 *
-	 * @return the player
+	 * @return les données de player
 	 */
 	public Player getPlayer() {
 		return(player);
 	}
 	
 	/**
-	 * Gets the score.
+	 * Getter du score du joueur 
 	 *
-	 * @return the score
+	 * @return le score
 	 */
 	public int getScore() {
 		return(score);
 	}
 	
 	/**
-	 * Gets the screen words.
+	 * Getter des mots aparaissant à l'écran
 	 *
-	 * @return the screen words
+	 * @return screenwords
 	 */
 	public ArrayList<Words> getScreenWords(){
 		return(screenWords);
