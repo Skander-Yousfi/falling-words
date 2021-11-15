@@ -4,16 +4,16 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 /**
- * The Class CoordTest.
+ * La classe CoordTest.
  */
 class CoordTest {
 	
 	protected Coord a;
 
 	/**
-	 * Test coord X.
+	 * Test pour vérifier que l'abcisse retournée par le getter getX() est bien égale à l'abcisse initialisée de a.
 	 *
-	 * @throws Exception the exception
+	 * @throws Exception
 	 */
 	@Test
 	void TestCoordX() throws Exception {
@@ -22,9 +22,9 @@ class CoordTest {
 	}
 	
 	/**
-	 * Test coord Y.
+	 * Test pour vérifier que l'ordonnée retournée par le getter getY() est bien égale à l'ordonnée initialisée de a.
 	 *
-	 * @throws Exception the exception
+	 * @throws Exception 
 	 */
 	@Test
 	void TestCoordY() throws Exception {
@@ -33,7 +33,7 @@ class CoordTest {
 	}
 	
 	/**
-	 * Test coord down.
+	 * Test pour vérifier que l'ordonnée soit bien modifiée lors de l'appel de la méthode down
 	 *
 	 * @throws Exception the exception
 	 */
