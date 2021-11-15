@@ -1,19 +1,16 @@
 package projet;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class Main.
  */
 public class Main {
 	
 	/**
-	 * The main method.
+	 * La methode main qui affiche la fenetre de debut
 	 *
-	 * @param args the arguments
+	 * @param les arguments args 
 	 */
 	public static void main (String [] args) {
-//		Partie p = new Partie("Romane");
-//		Test t = new Test(p);
 		new Fenetre1();
 	}
 }
