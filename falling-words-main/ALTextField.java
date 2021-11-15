@@ -7,16 +7,16 @@ import java.awt.event.*;
  */
 public class ALTextField implements KeyListener{
 	
-	/**  partie en cours*/
+	/** La partie en cours*/
 	private Partie p;
 	
-	/** fenetre de jeu associee a la partie */
+	/** La fenetre de jeu associée à la partie */
 	private FenetreJeu f;
 	
 	/**
-	 * Instantie une nouvelle zone de saisie
+	 * Instantie un nouveau Action Listener tout en le liant à la zone de saisie de la fenêtre.
 	 *
-	 * @param p
+	 * @param p la partie
 	 */
 	public ALTextField(Partie p) {
 		this.p = p;
@@ -25,18 +25,18 @@ public class ALTextField implements KeyListener{
 	}
 
 	/**
-	 * methode appelee lorsqu'une touche est enfoncee et relachee par le joueur
+	 * Méthode appelée lorsqu'une touche est enfoncée puis relachée par le joueur.
 	 *
-	 * @param e
+	 * @param e l'événement
 	 */
 	@Override
 	public void keyTyped(KeyEvent e) {
 	}
 
 	/**
-	 * touche enfoncee
+	 * Méthode appelée lorsqu'une touche est enfoncée par le joueur.
 	 *
-	 * @param e
+	 * @param e l'événement
 	 */
 	@Override
 	public void keyPressed(KeyEvent e) {
@@ -53,9 +53,9 @@ public class ALTextField implements KeyListener{
 	}
 
 	/**
-	 * touche relachee
+	 * Méthode appelée lorsqu'une touche est relachée par le joueur.
 	 *
-	 * @param e
+	 * @param e l'événement
 	 */
 	@Override
 	public void keyReleased(KeyEvent e) {
