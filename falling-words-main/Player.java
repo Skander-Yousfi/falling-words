@@ -1,37 +1,36 @@
 package projet;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class Player.
+ * La classe Player represente le joueur
  */
 public class Player {
 	
-	/** The pseudo. */
+	/** pseudonyme du joueur */
 	private String pseudo;
 	
-	/** The health. */
+	/** Nombre de vies du joueur*/
 	private int health = 3;
 
 	/**
-	 * Instantiates a new player.
+	 * Instantiation d'un nouveau joueur
 	 *
-	 * @param pseudo the pseudo
+	 * @param pseudo
 	 */
 	public Player(String pseudo) {
 		this.pseudo=pseudo;
 	}
 	
 	/**
-	 * Verif health.
+	 * Verification du nombre de vie du joueur
 	 *
-	 * @return true, if successful
+	 * @return true si la condition est verifiee
 	 */
 	public boolean verif_health() {
 		return(this.health > 0);
 	}
 	
 	/**
-	 * Gets the pseudo.
+	 * Getter du pseudo
 	 *
 	 * @return the pseudo
 	 */
@@ -40,16 +39,16 @@ public class Player {
 	}
 	
 	/**
-	 * Gets the health.
+	 * getter du nombre de vie du joueur
 	 *
-	 * @return the health
+	 * @return le nombre de vie du joueur health
 	 */
 	public int getHealth() {
 		return health;
 	}
 	
 	/**
-	 * Loose health.
+	 * methode qui retire une vie au joueur
 	 */
 	public void looseHealth() {
 		health -= 1;
