@@ -7,6 +7,7 @@ import java.util.*;
 import javax.swing.*;
 
 public class FenetreFin implements ActionListener{
+	
 	private JFrame f;
 	private JPanel pane;
 	private JPanel panel;
@@ -19,7 +20,7 @@ public class FenetreFin implements ActionListener{
 	private int score;
 	private ArrayList<String> pseudo;
 	private ArrayList<String> sc;
-
+	
 	public FenetreFin(Player p, int score) {
 		this.p = p;
 		this.score = score;
@@ -51,7 +52,7 @@ public class FenetreFin implements ActionListener{
 		f.setContentPane(pane);
 		f.setVisible(true);
 	}
-	
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == b1) {
@@ -62,14 +63,21 @@ public class FenetreFin implements ActionListener{
 		}
 		f.dispose();
 	}
-		
+	
 	public JTable tableau () {
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(new File (System.getProperty("user.dir")+"/abcd.txt")));
 			String line = reader.readLine();
-			pseudo = new ArrayList<String>(Arrays.asList(line.split(",")));
-			line=reader.readLine();
-			sc  = new ArrayList<String>(Arrays.asList(line.split(",")));	
+			System.out.println(line==null);
+			if (line == null) {
+				pseudo = new ArrayList<String>();
+				sc  = new ArrayList<String>();
+			}
+			else{
+				pseudo = new ArrayList<String>(Arrays.asList(line.split(",")));
+				line=reader.readLine();
+				sc  = new ArrayList<String>(Arrays.asList(line.split(",")));	
+			}
 			reader.close();
 		} 
 		catch (FileNotFoundException e) {
@@ -81,25 +89,29 @@ public class FenetreFin implements ActionListener{
 		pseudo.add(p.getPseudo());
 		sc.add(Integer.toString(score));
 		Integer[] score_int = new Integer[sc.size()] ;
-		int i = 0;
-			for (String myInt : sc) {
-		  score_int[i]=Integer.valueOf(myInt); 
-		  i++;
-		}
-		Arrays.sort(score_int, Collections.reverseOrder());
-		ArrayList<String> r1 = new ArrayList<String>();
+        int i = 0;
+		for (String myInt : sc) {
+          score_int[i]=Integer.valueOf(myInt); 
+          i++;
+        }
+        Arrays.sort(score_int, Collections.reverseOrder());
+        ArrayList<String> r1 = new ArrayList<String>();
+        ArrayList<String> r2 = new ArrayList<String>();
 		for (int s : score_int) {
 			r1.add(pseudo.get(sc.indexOf(Integer.toString(s))));
-		}
-		ArrayList<String> r2 = new ArrayList<String>();
-		for (int num : score_int) {
-			r2.add(Integer.toString(num));
+			r2.add(Integer.toString(s));
 		}
 		ArrayList<String> res1 = new ArrayList<String>();
 		ArrayList<String> res2 = new ArrayList<String>();
-		for (int k =0; i<10; i++) {
-			res1.add(r1.get(k));
-			res2.add(r2.get(k));
+		if (r1.size()>10) {
+			for (int k =0; k<10; k++) {
+				res1.add(r1.get(k));
+				res2.add(r2.get(k));
+			}
+		}
+		else {
+			res1=r1;
+			res2=r2;
 		}
 		try {
 			BufferedWriter writer = new BufferedWriter(new FileWriter(new File(System.getProperty("user.dir")+"/abcd.txt")));
