@@ -4,44 +4,43 @@ import java.awt.*;
 import java.util.ArrayList;
 import javax.swing.* ;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class FenetreJeu.
+ * La classe FenetreJeu.
  */
 public class FenetreJeu extends JFrame {
 	
-	/** The Constant serialVersionUID. */
+	/** La constante serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 	
-	/** The text. */
+	/** La zone de saisie dans laquelle on va taper nos mots. */
 	private JTextField text;
 	
-	/** The score. */
+	/** Le label contenant le score associé à la partie en cours. */
 	private JLabel score;
 	
-	/** The s. */
+	/** La panel contenant le label contenant le score. */
 	private JPanel s;
 	
-	/** The health. */
+	/** Le label contenant le nombre de vie associé au joueur de la partie en cours. */
 	private JLabel health;
 	
-	/** The h. */
+	/** La panel contenant le label contenant le nombre de vies. */
 	private JPanel h;
 	
-	/** The panel. */
+	/** Le panel contenant tous les objets de la fenetre. */
 	private JPanel panel;
 	
-	/** The pane. */
+	/** Le panel contenant la zone avec les mots qui tombent. */
 	private JPanel pane;
 	
-	/** The c. */
+	/** Le gridbagconstraint associé à pane. */
 	private GridBagConstraints c;
 	
 	/**
-	 * Instantiates a new fenetre jeu.
+	 * Instancie une nouvelle fenetre de jeu.
 	 *
-	 * @param l the l
-	 * @param p the p
+	 * @param l la liste de mots complète
+	 * @param p le joueur
 	 */
 	public FenetreJeu(ArrayList<Words> l, Player p) {
 		super("Falling Words");
@@ -90,19 +89,19 @@ public class FenetreJeu extends JFrame {
 	}
 	
 	/**
-	 * Gets the text field.
+	 * Getter qui permet d'accéder à la zone de saisie.
 	 *
-	 * @return the text field
+	 * @return la zone de saisie
 	 */
 	public JTextField getTextField() {
 		return(text);
 	}
 	
 	/**
-	 * Creates the tab.
+	 * Créé la liste de mots qui l'on va afficher à l'écran en remplissant tous les espaces vides par "                     " afin de garder la taille du tableau constante.
 	 *
-	 * @param l the l
-	 * @return the words[][]
+	 * @param l la liste de mots que l'on veut afficher à l'écran
+	 * @return words[][] la liste de mots à la bonne forme
 	 */
 	public Words[][] createTab(ArrayList<Words> l){
 		Words[][] list = new Words[5][15];
@@ -118,9 +117,9 @@ public class FenetreJeu extends JFrame {
 	}
 	
 	/**
-	 * Update screen.
+	 * Cette méthode actualise la zone où les mots tombent dans l'écran.
 	 *
-	 * @param l the l
+	 * @param l la liste de mots à afficher
 	 */
 	public void updateScreen(ArrayList<Words> l) {
 		pane.removeAll();
@@ -145,9 +144,9 @@ public class FenetreJeu extends JFrame {
 	}
 	
 	/**
-	 * Update health.
+	 * Actualise la zone dans laquelle le nombre de vies est affiché.
 	 *
-	 * @param p the p
+	 * @param p le joueur
 	 */
 	public void updateHealth(Player p) {
 		health.setText("Nombre de vies : "+p.getHealth());
@@ -156,9 +155,9 @@ public class FenetreJeu extends JFrame {
 	}
 	
 	/**
-	 * Update score.
+	 * Actualise la zone dans laquelle le score de la partie est affiché.
 	 *
-	 * @param score the score
+	 * @param score le score
 	 */
 	public void updateScore(int score) {
 		this.score.setText("Score : "+ score);
