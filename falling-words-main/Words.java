@@ -2,25 +2,24 @@ package projet;
 
 import java.util.Random;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class Words.
+ * La classe Words
  */
 public class Words {
 	
-	/** The word. */
+	/** Chaine de caracteres associee au mot */
 	private String word;
 	
-	/** The points. */
+	/** Nombre de points associes a chaque mot (1 caractere vaut 1 point) */
 	private int points;
 	
-	/** The coord. */
+	/** Coordonnees du mot à l'ecran */
 	private Coord coord;
 	
 	/**
-	 * Instantiates a new words.
+	 * Instanciation d'un nouveau mot
 	 *
-	 * @param mot the mot
+	 * @param mot, la chaine de caracteres associee au mot
 	 */
 	public Words (String mot) {
 		this.word = mot;
@@ -30,11 +29,11 @@ public class Words {
 	}
 	
 	/**
-	 * Instantiates a new words.
+	 * Instanciation d'un nouveau mot
 	 *
-	 * @param mot the mot
-	 * @param x the x
-	 * @param y the y
+	 * @param mot, la chaine de caracteres associee au mot
+	 * @param x, abscisse du premier caractere du mot 
+	 * @param y, ordonnee du mot
 	 */
 	public Words (String mot, int x, int y) {
 		this.word = mot;
@@ -43,7 +42,7 @@ public class Words {
 	}
 	
 	/**
-	 * Gets the word.
+	 * Getter du mot
 	 *
 	 * @return the word
 	 */
@@ -52,7 +51,7 @@ public class Words {
 	}
 	
 	/**
-	 * Gets the points.
+	 * Getter pour le nombre de points du mot
 	 *
 	 * @return the points
 	 */
@@ -61,7 +60,7 @@ public class Words {
 	}
 	
 	/**
-	 * Gets the coord.
+	 * Getter des coordonnees du mot
 	 *
 	 * @return the coord
 	 */
@@ -70,14 +69,14 @@ public class Words {
 	}
 	
 	/**
-	 * Down word.
+	 * methode downWord, permettant de modifier les coordonnees du mot afin de le faire descendre a l'ecran 
 	 */
 	public void downWord () {
 		coord.down();
 	}
 	
 	/**
-	 * Inits the coord.
+	 * Initialisation aleatoire des coordonnees d'un mot afin de l'ajouter à l'ecran
 	 */
 	public void initCoord() {
 		Random random = new Random();
