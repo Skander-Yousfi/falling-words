@@ -32,7 +32,7 @@ public class Player {
 	/**
 	 * Getter du pseudo
 	 *
-	 * @return the pseudo
+	 * @return le pseudo
 	 */
 	public String getPseudo() {
 		return(pseudo);
