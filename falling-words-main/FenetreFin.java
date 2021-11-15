@@ -6,26 +6,59 @@ import java.io.*;
 import java.util.*;
 import javax.swing.*;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class FenetreFin.
+ */
 public class FenetreFin implements ActionListener{
 	
+	/** The f. */
 	private JFrame f;
+	
+	/** The pane. */
 	private JPanel pane;
+	
+	/** The panel. */
 	private JPanel panel;
+	
+	/** The tab. */
 	private JPanel tab;
+	
+	/** The b 1. */
 	private JButton b1;
+	
+	/** The b 2. */
 	private JButton b2;
+	
+	/** The b 3. */
 	private JButton b3;
+	
+	/** The lab. */
 	private JLabel lab;
+	
+	/** The p. */
 	private Player p;
+	
+	/** The score. */
 	private int score;
+	
+	/** The pseudo. */
 	private ArrayList<String> pseudo;
+	
+	/** The sc. */
 	private ArrayList<String> sc;
 	
+	/**
+	 * Instantiates a new fenetre fin.
+	 *
+	 * @param p the p
+	 * @param score the score
+	 */
 	public FenetreFin(Player p, int score) {
 		this.p = p;
 		this.score = score;
 		f = new JFrame();
-		f.setSize(500, 300);
+		f.setSize(500, 400);
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		f.setLocationRelativeTo(null);
 		pane = new JPanel(); 
@@ -53,6 +86,11 @@ public class FenetreFin implements ActionListener{
 		f.setVisible(true);
 	}
 
+	/**
+	 * Action performed.
+	 *
+	 * @param e the e
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == b1) {
@@ -64,9 +102,14 @@ public class FenetreFin implements ActionListener{
 		f.dispose();
 	}
 	
+	/**
+	 * Tableau.
+	 *
+	 * @return the j table
+	 */
 	public JTable tableau () {
 		try {
-			BufferedReader reader = new BufferedReader(new FileReader(new File (System.getProperty("user.dir")+"/abcd.txt")));
+			BufferedReader reader = new BufferedReader(new FileReader(new File (System.getProperty("user.dir")+"\\src\\projet\\abcd.txt")));
 			String line = reader.readLine();
 			System.out.println(line==null);
 			if (line == null) {
@@ -114,7 +157,7 @@ public class FenetreFin implements ActionListener{
 			res2=r2;
 		}
 		try {
-			BufferedWriter writer = new BufferedWriter(new FileWriter(new File(System.getProperty("user.dir")+"/abcd.txt")));
+			BufferedWriter writer = new BufferedWriter(new FileWriter(new File(System.getProperty("user.dir")+"\\src\\projet\\abcd.txt")));
 			writer.write(String.join(",", res1));
 			writer.newLine();
 			writer.write(String.join(",", res2));
