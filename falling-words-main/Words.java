@@ -44,7 +44,7 @@ public class Words {
 	/**
 	 * Getter du mot
 	 *
-	 * @return the word
+	 * @return le mot word
 	 */
 	public String getWord() {
 		return(word);
@@ -53,7 +53,7 @@ public class Words {
 	/**
 	 * Getter pour le nombre de points du mot
 	 *
-	 * @return the points
+	 * @return les points
 	 */
 	public int getPoints() {
 		return(points);
@@ -62,7 +62,7 @@ public class Words {
 	/**
 	 * Getter des coordonnees du mot
 	 *
-	 * @return the coord
+	 * @return les coordonnées coord
 	 */
 	public Coord getCoord() {
 		return(coord);
