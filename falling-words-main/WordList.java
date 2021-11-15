@@ -7,13 +7,22 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class WordList.
+ */
 public class WordList {
+	
+	/** The words. */
 	private static ArrayList<Words> words;
 	
+	/**
+	 * Instantiates a new word list.
+	 */
 	public WordList() {
 		words = new ArrayList<Words>();
 		try{
-			for (String line : Files.readAllLines(Paths.get(System.getProperty("user.dir")+"/mots.txt"))){
+			for (String line : Files.readAllLines(Paths.get(System.getProperty("user.dir")+"\\src\\projet\\mots.txt"))){
 				Words l = new Words(line);
 				words.add(l);
 			}
@@ -24,9 +33,15 @@ public class WordList {
 	    	System.out.print("Le fichier que vous essayez d'ouvrir n'existe pas.");
 	    }
 	    catch (IOException e){
-	    	System.out.print("Problème pendant l'accès au fichier.");
+	    	System.out.print("ProblÃ¨me pendant l'accÃ¨s au fichier.");
 	    }
 	}
+	
+	/**
+	 * Gets the words.
+	 *
+	 * @return the words
+	 */
 	public ArrayList<Words> getWords(){
 		return(words);
 	}
@@ -44,7 +59,7 @@ public class WordList {
 */
 // Remarques : 
 
-/* Le caractère \ étant un caractère réservé, il faut le banaliser en le doublant, on remplace donc les \ par \\
+/* Le caractÃ¨re \ Ã©tant un caractÃ¨re rÃ©servÃ©, il faut le banaliser en le doublant, on remplace donc les \ par \\
 File fichier = new File("D:\\dossier\\fichier.txt");
 File dossier = new File("D:\\dossier"); */
 
