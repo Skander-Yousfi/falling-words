@@ -6,53 +6,52 @@ import java.io.*;
 import java.util.*;
 import javax.swing.*;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class FenetreFin.
+ * La Classe FenetreFin.
  */
 public class FenetreFin implements ActionListener{
 	
-	/** The f. */
+	/** La fenetre de fin. */
 	private JFrame f;
 	
-	/** The pane. */
+	/** Le panel pane qui contient tous les objets de la fenetre. */
 	private JPanel pane;
 	
-	/** The panel. */
+	/** Le panel panel qui contient les boutons b1 et b2. */
 	private JPanel panel;
 	
-	/** The tab. */
+	/** Le panel tab qui contient le tableau des high-scores. */
 	private JPanel tab;
 	
-	/** The b 1. */
+	/** Le bouton b1 "Rejouer avec le pseudo" qui relance une partie avec le même pseudo. */
 	private JButton b1;
 	
-	/** The b 2. */
+	/** Le bouton b2 "Changer de pseudo" qui permet de retourner à la fenetre de début pour changer de pseudo et éventuellement relancer une partie. */
 	private JButton b2;
 	
-	/** The b 3. */
+	/** Le bouton b3 "Quitter" qui fermer toutes les fenetres et d'arrêter le jeu. */
 	private JButton b3;
 	
-	/** The lab. */
+	/** Le Label lab qui permet d'afficher "TOP DES 10 MEILLEURS SCORES" en haut de la fenetre. */
 	private JLabel lab;
 	
-	/** The p. */
+	/** Le joueur p associé à la partie jouée juste avant. */
 	private Player p;
 	
-	/** The score. */
+	/** Le score obtenu par le joueur p lors de la partie. */
 	private int score;
 	
-	/** The pseudo. */
+	/** La liste des pseudos des joueurs enregistrés dans les high-scores. */
 	private ArrayList<String> pseudo;
 	
-	/** The sc. */
+	/** La liste des scores enregistrés dans les high-scores. */
 	private ArrayList<String> sc;
 	
 	/**
-	 * Instantiates a new fenetre fin.
+	 * Instancie une nouvelle FenetreFin.
 	 *
-	 * @param p the p
-	 * @param score the score
+	 * @param p
+	 * @param score
 	 */
 	public FenetreFin(Player p, int score) {
 		this.p = p;
@@ -87,9 +86,9 @@ public class FenetreFin implements ActionListener{
 	}
 
 	/**
-	 * Action performed.
+	 * La méthode Action performed donne les actions à effectuer lorsqu'un des boutons est cliqué.
 	 *
-	 * @param e the e
+	 * @param e un evenement associé aux boutons.
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -103,9 +102,9 @@ public class FenetreFin implements ActionListener{
 	}
 	
 	/**
-	 * Tableau.
+	 * La méthode Tableau récupère les high scores enregistrés et rajoute le nouveau score et pseudo dans les listes avant de les enregistrer à nouveau et de les stocker dans un JTable en vue d'etre affichés.
 	 *
-	 * @return the j table
+	 * @return le JTable contenant les high scores après leur mise à jour
 	 */
 	public JTable tableau () {
 		try {
