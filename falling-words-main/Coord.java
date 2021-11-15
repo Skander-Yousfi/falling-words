@@ -1,22 +1,21 @@
 package projet;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class Coord.
+ * La classe Coord.
  */
 public class Coord {
 	
-	/** The x. */
+	/** Initialisation de l'abcisse */
 	private int x;
 	
-	/** The y. */
+	/** Initialisation de l'ordonnee */
 	private int y;
 	
 	/**
-	 * Instantiates a new coord.
+	 * Instantiation d'une nouvelle coordonnee
 	 *
-	 * @param a the a
-	 * @param b the b
+	 * @param a, l'abcisse
+	 * @param b, l'ordonnee
 	 */
 	public Coord (int a, int b) {
 		x = a;
@@ -24,38 +23,28 @@ public class Coord {
 	}
 	
 	/**
-	 * Gets the x.
+	 * Getter de l'abcisse
 	 *
-	 * @return the x
+	 * @return l'abcisse x
 	 */
 	public int getX () {
 		return(x);
 	}
 	
 	/**
-	 * Gets the y.
+	 * Getter de l'ordonnee
 	 *
-	 * @return the y
+	 * @return l'ordonnee y
 	 */
 	public int getY () {
 		return(y);
 	}
 	
 	/**
-	 * Down.
+	 * methode qui permet d'incrementer l'ordonnee 
 	 */
 	public void down () {
 		y += 1;
 	}
 	
-	/**
-	 * Equals coord.
-	 *
-	 * @param c the c
-	 * @return true, if successful
-	 */
-	//inutile 
-	public boolean equalsCoord(Coord c) {
-		return ((this.getX()==c.getX()) && (this.getY()==c.getY()));
-	}
 }
