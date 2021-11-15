@@ -1,7 +1,7 @@
 package projet;
 
 /**
- * The Class Main.
+ * La classe Main.
  */
 public class Main {
 	
