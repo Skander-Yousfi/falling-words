@@ -2,22 +2,21 @@ package projet;
 
 import java.awt.event.*;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class ALTextField.
+ * La classe ActionListener de la zone de saisie sur la fenetre de jeu: ALTextField.
  */
 public class ALTextField implements KeyListener{
 	
-	/** The p. */
+	/**  partie en cours*/
 	private Partie p;
 	
-	/** The f. */
+	/** fenetre de jeu associee a la partie */
 	private FenetreJeu f;
 	
 	/**
-	 * Instantiates a new AL text field.
+	 * Instantie une nouvelle zone de saisie
 	 *
-	 * @param p the p
+	 * @param p
 	 */
 	public ALTextField(Partie p) {
 		this.p = p;
@@ -26,18 +25,18 @@ public class ALTextField implements KeyListener{
 	}
 
 	/**
-	 * Key typed.
+	 * methode appelee lorsqu'une touche est enfoncee et relachee par le joueur
 	 *
-	 * @param e the e
+	 * @param e
 	 */
 	@Override
 	public void keyTyped(KeyEvent e) {
 	}
 
 	/**
-	 * Key pressed.
+	 * touche enfoncee
 	 *
-	 * @param e the e
+	 * @param e
 	 */
 	@Override
 	public void keyPressed(KeyEvent e) {
@@ -54,9 +53,9 @@ public class ALTextField implements KeyListener{
 	}
 
 	/**
-	 * Key released.
+	 * touche relachee
 	 *
-	 * @param e the e
+	 * @param e
 	 */
 	@Override
 	public void keyReleased(KeyEvent e) {
