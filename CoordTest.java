@@ -1,4 +1,4 @@
-package projet;
+package test;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.AfterEach;
@@ -6,31 +6,45 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import projet.Coord;
 
+/**
+ * The Class CoordTest.
+ */
 class CoordTest {
-	protected Coord a;
 	
-	@BeforeEach
-	void setUp(int x, int y) throws Exception {
-		a = new Coord(x,y) ;
-		
-	}
+	protected Coord a;
 
-	@AfterEach
-	void tearDown() throws Exception {
-	}
-
+	/**
+	 * Test coord X.
+	 *
+	 * @throws Exception the exception
+	 */
 	@Test
 	void TestCoordX() throws Exception {
-		assertEquals(a.getX(),x);
+		a = new Coord(1,2) ;
+		assertEquals(a.getX(),1);
 	}
+	
+	/**
+	 * Test coord Y.
+	 *
+	 * @throws Exception the exception
+	 */
 	@Test
 	void TestCoordY() throws Exception {
-		assertEquals(a.getY(),y);
+		a = new Coord(1,2) ;
+		assertEquals(a.getY(),2);
 	}
+	
+	/**
+	 * Test coord down.
+	 *
+	 * @throws Exception the exception
+	 */
 	@Test
 	void TestCoordDown() throws Exception {
+		a = new Coord(1,2) ;
 		a.down();
-		assertEquals(a.getY(),y);
+		assertEquals(a.getY(),3);
 	}
 
 
