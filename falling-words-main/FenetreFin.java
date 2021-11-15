@@ -177,6 +177,12 @@ public class FenetreFin implements ActionListener{
 			i++;
 		}			
 		String[] titre= {"Pseudonyme","Score"};
-		return(new JTable(donnees,titre));
+		JTable jtable = new JTable(donnees,titre) {
+	        	private static final long serialVersionUID = 1L;
+			public boolean isCellEditable(int row, int column) {                
+                		return false;               
+        		};
+		};
+		return(jtable);
 	}
 }
