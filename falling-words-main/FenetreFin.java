@@ -108,7 +108,7 @@ public class FenetreFin implements ActionListener{
 	 */
 	public JTable tableau () {
 		try {
-			BufferedReader reader = new BufferedReader(new FileReader(new File (System.getProperty("user.dir")+"\\src\\projet\\abcd.txt")));
+			BufferedReader reader = new BufferedReader(new FileReader(new File (System.getProperty("user.dir")+File.separator+"abcd.txt")));
 			String line = reader.readLine();
 			System.out.println(line==null);
 			if (line == null) {
@@ -156,7 +156,7 @@ public class FenetreFin implements ActionListener{
 			res2=r2;
 		}
 		try {
-			BufferedWriter writer = new BufferedWriter(new FileWriter(new File(System.getProperty("user.dir")+"\\src\\projet\\abcd.txt")));
+			BufferedWriter writer = new BufferedWriter(new FileWriter(new File(System.getProperty("user.dir")+File.separator+"abcd.txt")));
 			writer.write(String.join(",", res1));
 			writer.newLine();
 			writer.write(String.join(",", res2));
