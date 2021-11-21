@@ -21,7 +21,7 @@ public class WordList {
 	public WordList() {
 		words = new ArrayList<Words>();
 		try{
-			for (String line : Files.readAllLines(Paths.get(System.getProperty("user.dir")+"\\src\\projet\\mots.txt"))){
+			for (String line : Files.readAllLines(Paths.get(System.getProperty("user.dir")+File.separator+"mots.txt"))){
 				Words l = new Words(line);
 				words.add(l);
 			}
