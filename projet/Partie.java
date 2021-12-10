@@ -184,7 +184,7 @@ public class Partie implements ActionListener, java.io.Serializable{
 		if (score>100 && etape < 4){
 			timer.setDelay(800);
 			etape = 4;
-			fenetre.updateColor(33, 70, 207);
+			fenetre.updateColor(102, 255, 102);
 		}
 		if (score>125 && etape < 5){
 			timer.setDelay(750);
