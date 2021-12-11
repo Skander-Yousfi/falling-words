@@ -167,71 +167,85 @@ public class Partie implements ActionListener, java.io.Serializable{
 		}
 		compteur++;
 		if (score>25 && etape < 1){
+			System.out.println("palier 1/14");
 			timer.setDelay(950);
 			etape = 1;
 			fenetre.updateColor(218, 247, 166);
 		}
 		if (score>50 && etape < 2){
+			System.out.println("palier 2/14 atteint");
 			timer.setDelay(900);
 			etape = 2;
 			fenetre.updateColor(50, 193, 190);
 		}
 		if (score>75 && etape < 3){
+			System.out.println("palier 3/14 atteint");
 			timer.setDelay(850);
 			etape = 3;
 			fenetre.updateColor(38, 186, 237);
 		}
 		if (score>100 && etape < 4){
+			System.out.println("palier 4/14 atteint");
 			timer.setDelay(800);
 			etape = 4;
 			fenetre.updateColor(102, 255, 102);
 		}
 		if (score>125 && etape < 5){
+			System.out.println("palier 5/14 atteint");
 			timer.setDelay(750);
 			etape = 5;
 			fenetre.updateColor(134, 92, 206);
 		}
 		if (score>150 && etape < 6){
+			System.out.println("palier 6/14 atteint");
 			timer.setDelay(700);
 			etape = 6;
 			fenetre.updateColor(203, 92, 206);
 		}
 		if (score>175 && etape < 7){
+			System.out.println("palier 7/14 atteint");
 			timer.setDelay(675);
 			etape = 7;
 			fenetre.updateColor(191, 57, 105);
 		}
 		if (score>200 && etape < 8){
+			System.out.println("palier 8/14 atteint");
 			timer.setDelay(650);
 			etape = 8;
 			fenetre.updateColor(235, 140, 50);
 		}
 		if (score>225 && etape < 9){
+			System.out.println("palier 9/14 atteint");
 			timer.setDelay(625);
 			etape = 9;
 			fenetre.updateColor(238, 234, 30);
 		}
 		if (score>250 && etape < 10){
+			System.out.println("palier 10/14 atteint");
 			timer.setDelay(600);
 			etape = 10;
 			fenetre.updateColor(160, 229, 32);
 		}
 		if (score>275 && etape < 11){
+			System.out.println("palier 11/14 atteint");
 			timer.setDelay(575);
 			etape = 11;
 			fenetre.updateColor(94, 207, 33);
 		}
 		if (score>300 && etape < 12){
+			System.out.println("palier 12/14 atteint");
 			timer.setDelay(550);
 			etape = 12;
 			fenetre.updateColor(27, 164, 54);
 		}
 		if (score>325 && etape < 13){
+			System.out.println("palier 13/14 atteint");
 			timer.setDelay(525);
 			etape = 13;
 			fenetre.updateColor(27, 164, 112);
 		}
 		if (score>350 && etape < 14){
+			System.out.println("BRAVO !! palier 14/14 atteint");
 			timer.setDelay(500);
 			etape = 14;
 			fenetre.updateColor(152, 218, 217);
