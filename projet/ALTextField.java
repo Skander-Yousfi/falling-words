@@ -1,11 +1,14 @@
 package projet;
 
-import java.awt.Component;
+import java.awt.Component; 
 import java.awt.event.*;
 import java.io.File;
+//import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+//import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+//import java.util.ArrayList;
 
 import javax.swing.*;
 
@@ -25,9 +28,16 @@ public class ALTextField implements KeyListener, ActionListener{
 	
 	/** Le bouton "Reprendre" qui entraine la reprise de la partie. */
 	private JButton b2;
+	
+	/** Le bouton "Oui" qui entraine le remplacement d'une partie déjà sauvegardée. */
+	private JButton b3= new JButton("Oui");
+	
+	/** Le bouton "Non". On quitte la partie sans sauvegarder. */
+	private JButton b4 = new JButton("Non");
 
 	/** La fenetre pop up qui apparait lorsque le jeu est en pause */
 	private JDialog diag;
+
 	
 	
 	/**
@@ -109,7 +119,33 @@ public class ALTextField implements KeyListener, ActionListener{
 	 * @param e l'événement
 	 */
 	public void actionPerformed(ActionEvent e) {
+		int t=1;
 		if (e.getSource() == b1) {
+			File fi = new File(System.getProperty("user.dir")+File.separator+p.getPlayer().getPseudo()+"-save.txt"); 
+			if (fi.exists()) {//fichier existe, on genere pop-up 
+				JDialog diag2 = new JDialog(f);
+				JPanel tab = new JPanel();
+				JLabel lab = new JLabel("Une sauvegarde existe déjà pour ce Pseudonyme, voulez-vous la remplacer ?");
+				tab.add(lab);
+				b3.addActionListener(this);
+				b4.addActionListener(this);
+				tab.add(b3);
+				tab.add(b4);
+				diag2.add(tab);
+				diag2.setSize(800, 100);
+				diag2.setLocationRelativeTo(null);
+				diag2.setVisible(true);
+			}
+			else {
+				t=0;
+			}
+		}
+		if (e.getSource() == b2) {
+			p.getTimer().start();
+			p.getChrono().start();
+			diag.dispose();
+		}
+		if (e.getSource()==b3 || t==0 ) {
 			try {
 				File file = new File(System.getProperty("user.dir")+File.separator+p.getPlayer().getPseudo()+"-save.txt");
 		        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file));
@@ -135,13 +171,12 @@ public class ALTextField implements KeyListener, ActionListener{
 			}
 			p.getFrame().dispose();
 		}
-		if (e.getSource() == b2) {
-			p.getTimer().start();
-			p.getChrono().start();
-			diag.dispose();
+		if(e.getSource()==b4) { 
+			p.getFrame().dispose();
 		}
 	}
 
 	
 
 }
+
