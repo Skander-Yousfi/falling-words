@@ -30,13 +30,16 @@ public class ALTextField implements KeyListener, ActionListener{
 	private JButton b2;
 	
 	/** Le bouton "Oui" qui entraine le remplacement d'une partie déjà sauvegardée. */
-	private JButton b3= new JButton("Oui");
+	private JButton b3= new JButton("Sauvegarder et quitter");
 	
 	/** Le bouton "Non". On quitte la partie sans sauvegarder. */
-	private JButton b4 = new JButton("Non");
-
+	private JButton b4 = new JButton("Ne pas sauvegarder et quitter");
+	
 	/** La fenetre pop up qui apparait lorsque le jeu est en pause */
 	private JDialog diag;
+	
+	/** La fenetre pop up qui apparait lorsque l'on souhaite sauvegarder une partie lorsqu'une sauvegarde existe déjà. */
+	private JDialog diag2;
 
 	
 	
@@ -119,11 +122,10 @@ public class ALTextField implements KeyListener, ActionListener{
 	 * @param e l'événement
 	 */
 	public void actionPerformed(ActionEvent e) {
-		int t=1;
 		if (e.getSource() == b1) {
 			File fi = new File(System.getProperty("user.dir")+File.separator+p.getPlayer().getPseudo()+"-save.txt"); 
-			if (fi.exists()) {//fichier existe, on genere pop-up 
-				JDialog diag2 = new JDialog(f);
+			if (fi.exists()) {
+				diag2 = new JDialog(f);
 				JPanel tab = new JPanel();
 				JLabel lab = new JLabel("Une sauvegarde existe déjà pour ce Pseudonyme, voulez-vous la remplacer ?");
 				tab.add(lab);
@@ -137,7 +139,8 @@ public class ALTextField implements KeyListener, ActionListener{
 				diag2.setVisible(true);
 			}
 			else {
-				t=0;
+				save();
+				f.dispose();
 			}
 		}
 		if (e.getSource() == b2) {
@@ -145,38 +148,42 @@ public class ALTextField implements KeyListener, ActionListener{
 			p.getChrono().start();
 			diag.dispose();
 		}
-		if (e.getSource()==b3 || t==0 ) {
-			try {
-				File file = new File(System.getProperty("user.dir")+File.separator+p.getPlayer().getPseudo()+"-save.txt");
-		        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file));
-		        oos.writeObject(p.getPlayer());
-		        oos.writeObject(p.getWords());
-		        oos.writeObject(p.getScreenWords());
-		        oos.writeObject(p.getTime());
-		        oos.writeObject(p.getScore());
-		        oos.writeObject(p.getCompteur());
-		        oos.writeObject(p.getEtape());
-		        oos.writeObject(p.getAdd());
-		        oos.writeObject(p.getIndex());
-		        oos.writeObject(p.getCaract());
-		        oos.writeObject(p.getMots());
-		        oos.writeObject(p.getCorrMots());
-		        oos.writeObject(p.getFrame().getTextField().getText());
-		        oos.writeObject(p.getTimer());
-		        oos.writeObject(p.getChrono());
-		        oos.close();
-			}
-			catch (IOException exep) {
-				exep.printStackTrace();
-			}
-			p.getFrame().dispose();
+		if (e.getSource()==b3) {
+			save();
+			f.dispose();
 		}
 		if(e.getSource()==b4) { 
-			p.getFrame().dispose();
+			f.dispose();
 		}
 	}
 
-	
-
+	/**
+	 * Méthode appelée pour sauvegarder la partie.
+	 */
+	public void save () {
+		try {
+			File file = new File(System.getProperty("user.dir")+File.separator+p.getPlayer().getPseudo()+"-save.txt");
+	        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file));
+	        oos.writeObject(p.getPlayer());
+	        oos.writeObject(p.getWords());
+	        oos.writeObject(p.getScreenWords());
+	        oos.writeObject(p.getTime());
+	        oos.writeObject(p.getScore());
+	        oos.writeObject(p.getCompteur());
+	        oos.writeObject(p.getEtape());
+	        oos.writeObject(p.getAdd());
+	        oos.writeObject(p.getIndex());
+	        oos.writeObject(p.getCaract());
+	        oos.writeObject(p.getMots());
+	        oos.writeObject(p.getCorrMots());
+	        oos.writeObject(p.getFrame().getTextField().getText());
+	        oos.writeObject(p.getTimer());
+	        oos.writeObject(p.getChrono());
+	        oos.close();
+		}
+		catch (IOException exep) {
+			exep.printStackTrace();
+		}
+	}
 }
 
