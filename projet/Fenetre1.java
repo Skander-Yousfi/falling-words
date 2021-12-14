@@ -184,7 +184,11 @@ public class Fenetre1 implements ActionListener{
 					+ "un mot, celui-ci vous rapporte autant de points qu'il a de caractères.\nLorsque "
 					+ "les mots touchent le bas de l'écran ils disparaissent à tout jamais et vous perdez "
 					+ "une de vos trois vies.\nLorsque vous n'avez plus de vie la partie est terminée!\nVotre but "
-					+ "est donc de survivre le plus longtemps possible en amassant le plus de points.\nA vous de jouer ;)");
+					+ "est donc de survivre le plus longtemps possible en amassant le plus de points."
+					+ "\nVous avez la possibilité de mettre en pause une partie en cours de jeu à tout moment. "
+					+ "Il vous suffit pour cela de presser la toucher 'entrer' de votre clavier."
+					+ "Il vous sera alors donné la possibilité de"
+					+ " sauvegarder votre partie." + "\nA vous de jouer ;)");
 			t.setAlignmentX(Component.CENTER_ALIGNMENT);
 			pane.add(t);
 			pane.add(t, Component.CENTER_ALIGNMENT);
