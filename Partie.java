@@ -1,5 +1,6 @@
 package projet;
 
+import java.awt.Color;
 import java.awt.event.*;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -8,7 +9,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
-
 import javax.swing.Timer;
 import java.util.Random;
 
@@ -46,7 +46,7 @@ public class Partie implements ActionListener, java.io.Serializable{
 	private Timer timer;
 	
 	/** Le timer qui à chaque "tic" actualise le temps de jeu */
-	final private Timer chrono;
+	private Timer chrono;
 	
 	/** Score du joueur */
 	private int score;
@@ -72,6 +72,48 @@ public class Partie implements ActionListener, java.io.Serializable{
 	
 	/** Nombre de mots tapés que l'on incrémente à chaque appuis sur le touche espace, uniquement si le mot est reconnu. */
 	private int corrMots;
+	
+	/** Liste de couleurs apparaissant à l'ecran */
+	private Color[] colors = new Color[] {new Color(62, 140, 73), new Color(218, 247, 166), new Color(50, 193, 190), 
+			new Color(38, 186, 237), new Color(33, 70, 207), new Color(134, 92, 206), new Color(203, 92, 206), 
+			new Color(191, 57, 105), new Color(235, 140, 50), new Color(238, 234, 30), new Color(160, 229, 32), 
+			new Color(94, 207, 33), new Color(27, 164, 54), new Color(27, 164, 112), new Color(152, 218, 217)};
+	
+
+	/**
+	 * Instanciation d'une nouvelle partie
+	 *
+	 * @param p (player), l (liste de tous les mots), screenWords (mots à l'écran), time (temps de jeu), score, compteur, etape, 
+			add, index, caract, mots, corrMots, text, timer, chrono
+	 */
+	public Partie(Player p, ArrayList<Words> l, ArrayList<Words> screenWords, Time time, int score, int compteur, int etape, 
+			int add, int index, int caract, int mots, int corrMots, String text, Timer timer, Timer chrono) {
+		this.index = index;
+		this.score = score;
+		this.compteur = compteur;
+		this.etape = etape;
+		this.add = add;
+		this.caract = caract;
+		this.mots = mots;
+		this.corrMots = corrMots;
+		list=  l;
+		player = p;
+		this.screenWords= screenWords;
+		fenetre = new FenetreJeu(screenWords, player, score, colors[etape], time.getTime());
+		fenetre.getTextField().setText(text);
+		this.timer = timer;
+		this.timer.addActionListener(this);
+		this.chrono = chrono;
+		this.chrono.addActionListener(this);
+		if (player.verif_health()) {
+			fenetre.updateScreen(screenWords);
+		}
+		new ALTextField(this);
+		fenetre.setVisible(true);
+		this.timer.start();
+		this.chrono.start();
+	}
+
 	
 	/**
 	 * Instanciation d'une nouvelle partie
@@ -100,47 +142,15 @@ public class Partie implements ActionListener, java.io.Serializable{
 		Collections.shuffle(list);
 		player = new Player(ps);
 		screenWords= new ArrayList<Words>();
-		fenetre = new FenetreJeu(screenWords, player);
+		fenetre = new FenetreJeu(screenWords, player, score, colors[etape], 0);
 		timer = new Timer(1000, this);
 		chrono = new Timer(1000, this);
-		ALTextField t = new ALTextField(this);
+		new ALTextField(this);
 		fenetre.setVisible(true);
 		timer.start();
 		chrono.start();
 	}
 	
-	/**
-	 * Instanciation d'une nouvelle partie
-	 *
-	 * @param p (player), l (liste de tous les mots), screenWords (mots à l'écran), time (temps de jeu), score, compteur, etape, 
-			add, index, caract, mots, corrMots, text, timer, chrono
-	 */
-	public Partie(Player p, ArrayList<Words> l, ArrayList<Words> screenWords, Time time, int score, int compteur, int etape, 
-			int add, int index, int caract, int mots, int corrMots, String text, Timer timer, Timer chrono) {
-		this.index = index;
-		this.score = score;
-		this.compteur = compteur;
-		this.etape = etape;
-		this.add = add;
-		this.caract = caract;
-		this.mots = mots;
-		this.corrMots = corrMots;
-		list=  l;
-		player = p;
-		this.screenWords= screenWords;
-		fenetre = new FenetreJeu(screenWords, player);
-		fenetre.setTime(time);
-		fenetre.getTextField().setText(text);
-		this.timer = timer;
-		this.timer.addActionListener(this);
-		this.chrono = chrono;
-		this.chrono.addActionListener(this);
-		ALTextField t = new ALTextField(this);
-		fenetre.setVisible(true);
-		this.timer.start();
-		this.chrono.start();
-	}
-
 	/**
 	 * Actualisation de la position des mots à l'écran
 	 */
@@ -166,37 +176,14 @@ public class Partie implements ActionListener, java.io.Serializable{
 			add = r.nextInt(3)+1;
 		}
 		compteur++;
-		if (score>50 && etape < 1){
-			timer.setDelay(900);
-			etape = 1;
+		int i = 0;
+		while ((25*i)<score) {
+			i++;
 		}
-		if (score>100 && etape < 2){
-			timer.setDelay(800);
-			etape = 2;
-		}
-		if (score>150 && etape < 3){
-			timer.setDelay(700);
-			etape = 3;
-		}
-		if (score>200 && etape < 4){
-			timer.setDelay(600);
-			etape = 4;
-		}
-		if (score>250 && etape < 5){
-			timer.setDelay(500);
-			etape = 5;
-		}
-		if (score>300 && etape < 6){
-			timer.setDelay(400);
-			etape = 6;
-		}
-		if (score>350 && etape < 7){
-			timer.setDelay(300);
-			etape = 7;
-		}
-		if (score>400 && etape < 8){
-			timer.setDelay(200);
-			etape = 8;
+		if (i != etape && etape<14) {
+			timer.setDelay(1000 - 50*i);
+			fenetre.updateColor(colors[i]);
+			etape = i;
 		}
 		if (player.verif_health()) {
 			fenetre.updateScreen(screenWords);

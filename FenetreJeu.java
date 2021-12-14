@@ -42,19 +42,20 @@ public class FenetreJeu extends JFrame {
 	 * @param l la liste de mots complète
 	 * @param p le joueur
 	 */
-	public FenetreJeu(ArrayList<Words> l, Player p) {
+	public FenetreJeu(ArrayList<Words> l, Player p, int score, Color col, int time) {
 		super("Falling Words");
-		setSize(450, 400);
+		setSize(450, 350);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 		panel = new JPanel(); 
 		panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
-		temps = new JLabel("Temps de jeu : 00:00");
+		this.time = new Time(time);
+		temps = new JLabel("Temps de jeu : "+this.time.toString());
 		temps.setAlignmentX(Component.CENTER_ALIGNMENT);
 		panel.add(temps);
-		score = new JLabel("Nombre de points : 0");
-		score.setAlignmentX(Component.CENTER_ALIGNMENT);
-		panel.add(score);
+		this.score = new JLabel("Nombre de points : "+score);
+		this.score.setAlignmentX(Component.CENTER_ALIGNMENT);
+		panel.add(this.score);
 		health = new JLabel("Nombre de vies : "+p.getHealth());
 		health.setAlignmentX(Component.CENTER_ALIGNMENT);
 		panel.add(health);
@@ -63,27 +64,20 @@ public class FenetreJeu extends JFrame {
 		c = new GridBagConstraints();
 		Words[][] list = createTab(l);
 		for (int i = 0; i<5; i++) {
-			for (Words w : list[i]) {
-				JLabel t = new JLabel(w.getWord());
-				c.gridx = w.getCoord().getX();
-				c.gridy = w.getCoord().getY();
-				if (w.getWord()!="                     ") {
-					t.setBackground(Color.gray);
-				}
-				else {
-					t.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.lightGray),pane.getBorder()));
-				}
+			for (int j = 0; j<15; j++) {
+				JLabel t = new JLabel(list[i][j].getWord());
+				c.gridx = list[i][j].getCoord().getX();
+				c.gridy = list[i][j].getCoord().getY();
 				pane.add(t, c); 
 			}
 		}
-		pane.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.lightGray),pane.getBorder()));
-		pane.setBackground(Color.lightGray);
+		pane.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createMatteBorder(0, 0, 5, 0, Color.red),pane.getBorder()));
+		pane.setBackground(col);
 		panel.add(pane, Component.CENTER_ALIGNMENT);
 		text = new JTextField("");
 		text.setMaximumSize(new Dimension(400, 50));
 		panel.add(text, Component.CENTER_ALIGNMENT);
 		setContentPane(panel);
-		time = new Time();
 
 	}
 	
@@ -142,16 +136,10 @@ public class FenetreJeu extends JFrame {
 		pane.removeAll();
 		Words[][] list = createTab(l);
 		for (int i = 0; i<5; i++) {
-			for (Words w : list[i]) {
-				JLabel t = new JLabel(w.getWord());
-				c.gridx = w.getCoord().getX();
-				c.gridy = w.getCoord().getY();
-				if (w.getWord()!="                     ") {
-					t.setBackground(Color.gray);
-				}
-				else {
-					t.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.lightGray),pane.getBorder()));
-				}
+			for (int j = 0; j<15; j++) {
+				JLabel t = new JLabel(list[i][j].getWord());
+				c.gridx = list[i][j].getCoord().getX();
+				c.gridy = list[i][j].getCoord().getY();
 				pane.add(t, c); 
 			}
 		}
@@ -193,5 +181,14 @@ public class FenetreJeu extends JFrame {
 		panel.repaint();
 	}
 	
-	
+	/**
+	 * Actualise la couleur de la zone dans laquelle les mots tombent.
+	 *
+	 * @param score le score
+	 */
+	public void updateColor(Color c) {
+		pane.setBackground(c);
+		pane.validate();
+		pane.repaint();
+	}
 }

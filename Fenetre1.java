@@ -144,22 +144,7 @@ public class Fenetre1 implements ActionListener{
 				text = (String) ois.readObject(); 
 				timer = (Timer) ois.readObject(); 
 				chrono = (Timer) ois.readObject();
-			    ois.close();
-			    System.out.println(p.getPseudo());
-			    System.out.println(l.get(0).getWord());
-			    System.out.println(screenWords);
-			    System.out.println(time.getTime());
-			    System.out.println(score);
-			    System.out.println(compteur);
-			    System.out.println(etape);
-			    System.out.println(add);
-			    System.out.println(index);
-			    System.out.println(caract);
-			    System.out.println(mots);
-			    System.out.println(corrMots);
-			    System.out.println(text);
-			    System.out.println(timer.getDelay());
-			    System.out.println(chrono.getDelay());
+				ois.close();
 			    JDialog diag = new JDialog(f);
 				JPanel tab = new JPanel();
 				JLabel lab = new JLabel("Une sauvegarde a été trouvée pour ce pseudonyme. Voulez-vous reprendre la partie sauvegardée?");
@@ -169,7 +154,7 @@ public class Fenetre1 implements ActionListener{
 				tab.add(b1);
 				tab.add(b2);
 				diag.add(tab);
-				diag.setSize(600, 100);
+				diag.setSize(800, 100);
 				diag.setLocationRelativeTo(null);
 				diag.setVisible(true);
 			} 
@@ -185,7 +170,7 @@ public class Fenetre1 implements ActionListener{
 			JDialog diag = new JDialog(f);
 			JPanel pane = new JPanel(); 
 			pane.setLayout(new BoxLayout(pane, BoxLayout.PAGE_AXIS));
-			JLabel l = new JLabel("Règles du jeu");
+			JLabel l = new JLabel("Regles du jeu");
 			l.setFont(new Font("TimesRoman", Font.BOLD | Font.ITALIC, 20));
 			l.setAlignmentX(Component.CENTER_ALIGNMENT);
 			pane.add(l);
@@ -203,7 +188,7 @@ public class Fenetre1 implements ActionListener{
 					+ "\nVous avez la possibilité de mettre en pause une partie en cours de jeu à tout moment. "
 					+ "Il vous suffit pour cela de presser la toucher 'entrer' de votre clavier."
 					+ "Il vous sera alors donné la possibilité de"
-					+ " sauvegarder votre partie." + "\nA vous de jouer ;)");
+					+ " sauvegarder votre partie.\nA vous de jouer ;)");
 			t.setAlignmentX(Component.CENTER_ALIGNMENT);
 			pane.add(t);
 			pane.add(t, Component.CENTER_ALIGNMENT);

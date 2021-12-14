@@ -5,6 +5,7 @@ import java.awt.event.*;
 import java.io.*;
 import java.util.*;
 import javax.swing.*;
+import javax.swing.Timer;
 import javax.swing.table.JTableHeader;
 
 /**
@@ -36,6 +37,12 @@ public class FenetreFin implements ActionListener{
 	/** Le bouton b4 "Quitter" qui fermer toutes les fenetres et d'arrêter le jeu. */
 	private JButton b4;
 	
+	/** Le bouton qui apparait sur la fenetre pop up lorsqu'une sauvegarde est détectée. */
+	private JButton b5 = new JButton("Reprendre la partie sauvegardée");
+	
+	/** Le bouton qui apparait sur la fenetre pop up lorsqu'une sauvegarde est détectée. */
+	private JButton b6 = new JButton("Commencer une nouvelle partie");
+	
 	/** Le Label lab qui permet d'afficher "TOP DES 10 MEILLEURS SCORES" en haut de la fenetre. */
 	private JLabel lab;
 	
@@ -53,6 +60,51 @@ public class FenetreFin implements ActionListener{
 	
 	/** La liste des scores enregistrés dans les high-scores. */
 	private ArrayList<String> sc;
+	
+	/** Le Joueur associé à la partie éventuellement sauvegardée. */
+	private Player player2 ;
+	
+	/** Le Joueur associé à la partie éventuellement sauvegardée. */
+    private ArrayList<Words> l;
+    
+    /** Le Joueur associé à la partie éventuellement sauvegardée. */
+    private ArrayList<Words> screenWords; 
+    
+    /** Le Joueur associé à la partie éventuellement sauvegardée. */
+    private Time time;
+    
+    /** Une valeur associée à la partie éventuellement sauvegardée. */
+    private int score2;
+    
+    /** Une valeur associée à la partie éventuellement sauvegardée. */
+    private int compteur;
+    
+    /** Une valeur associée à la partie éventuellement sauvegardée. */
+    private int etape;
+    
+    /** Une valeur associée à la partie éventuellement sauvegardée. */
+    private int add;
+    
+    /** Une valeur associée à la partie éventuellement sauvegardée. */
+    private int index; 
+    
+    /** Une valeur associée à la partie éventuellement sauvegardée. */
+    private int caract; 
+    
+    /** Une valeur associée à la partie éventuellement sauvegardée. */
+    private int mots;
+    
+    /** Une valeur associée à la partie éventuellement sauvegardée. */
+    private int corrMots; 
+    
+    /** Une chaine de caractères associée à la partie éventuellement sauvegardée. */
+    private String text;
+    
+    /** Un Timer associée à la partie éventuellement sauvegardée. */
+    private Timer timer; 
+    
+    /** Un Timer associée à la partie éventuellement sauvegardée. */
+    private Timer chrono;
 	
 	/**
 	 * Instancie une nouvelle FenetreFin.
@@ -102,11 +154,49 @@ public class FenetreFin implements ActionListener{
 	 *
 	 * @param e un evenement associé aux boutons.
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == b1) {
-			new Partie(player.getPseudo());
-			f.dispose();
+			try {
+				FileInputStream fis = new FileInputStream(new File(System.getProperty("user.dir")+File.separator+p.getPlayer().getPseudo()+"-save.txt"));
+				ObjectInputStream ois = new ObjectInputStream(fis);
+			    player2 = (Player) ois.readObject();
+			    l = (ArrayList<Words>) ois.readObject(); 
+			    screenWords = (ArrayList<Words>) ois.readObject(); 
+			    time = (Time) ois.readObject(); 
+			    score2 = (Integer) ois.readObject();
+			    compteur = (Integer) ois.readObject();
+			    etape = (Integer) ois.readObject();
+				add = (Integer) ois.readObject();
+				index = (Integer) ois.readObject();
+				caract = (Integer) ois.readObject();
+				mots = (Integer) ois.readObject();
+				corrMots = (Integer) ois.readObject();
+				text = (String) ois.readObject(); 
+				timer = (Timer) ois.readObject(); 
+				chrono = (Timer) ois.readObject();
+			    ois.close();
+			    JDialog diag = new JDialog(f);
+				JPanel tab = new JPanel();
+				JLabel lab = new JLabel("Une sauvegarde a été trouvée pour ce pseudonyme. Voulez-vous reprendre la partie sauvegardée?");
+				tab.add(lab);
+				b5.addActionListener(this);
+				b6.addActionListener(this);
+				tab.add(b5);
+				tab.add(b6);
+				diag.add(tab);
+				diag.setSize(800, 100);
+				diag.setLocationRelativeTo(null);
+				diag.setVisible(true);
+			} 
+			catch (ClassNotFoundException exp) {
+				exp.printStackTrace();
+			}
+			catch (IOException exp) {
+				new Partie(player.getPseudo());
+				f.dispose();
+			} 
 		}
 		else if (e.getSource() == b2) {
 			new Fenetre1();
@@ -141,11 +231,20 @@ public class FenetreFin implements ActionListener{
 			diag.setLocationRelativeTo(null);
 			diag.setVisible(true);
 		}
+		else if (e.getSource() == b5) {
+			new Partie(player2, l, screenWords, time, score2, compteur, etape, add, index, caract, mots, corrMots, text, timer, chrono);
+			f.dispose();
+		}
+		else if (e.getSource() == b6) {
+			new Partie(player.getPseudo());
+			f.dispose();
+		}
 		else {f.dispose();}
 	}
 	
 	/**
-	 * La méthode Tableau récupère les high scores enregistrés et rajoute le nouveau score et pseudo dans les listes avant de les enregistrer à nouveau et de les stocker dans un JTable en vue d'etre affichés.
+	 * La méthode Tableau récupère les high scores enregistrés et rajoute le nouveau score et pseudo dans 
+	 * les listes avant de les enregistrer à nouveau et de les stocker dans un JTable en vue d'etre affichés.
 	 *
 	 * @return le JTable contenant les high scores après leur mise à jour
 	 */
@@ -172,30 +271,40 @@ public class FenetreFin implements ActionListener{
 		}
 		pseudo.add(player.getPseudo());
 		sc.add(Integer.toString(score));
-		Integer[] score_int = new Integer[sc.size()] ;
+		int n = sc.size();
+		Integer[] score_int = new Integer[n] ;
         int j = 0;
-		for (String myInt : sc) {
-          score_int[j]=Integer.valueOf(myInt); 
-          j++;
-        }
-        Arrays.sort(score_int, Collections.reverseOrder());
-        ArrayList<String> r1 = new ArrayList<String>();
-        ArrayList<String> r2 = new ArrayList<String>();
-		for (int s : score_int) {
-			r1.add(pseudo.get(sc.indexOf(Integer.toString(s))));
-			r2.add(Integer.toString(s));
-		}
-		int index = 0;
-		String[][] donnees = new String[r1.size()][2];
-		int i=0;
-		while (i<r1.size()) {
-			if (r1.get(i).equals(player.getPseudo()) && r2.get(i).equals(Integer.toString(score))) {
-				index = i;
+		for (String i : sc) {
+	          score_int[j]=Integer.valueOf(i); 
+	          j++;
+	        }
+		Map<Integer,ArrayList<String>> map = new HashMap<Integer,ArrayList<String>>();
+		for (int i=0; i<n; i++) {
+			if (map.containsKey(score_int[i])) {
+				ArrayList<String> l = map.get(score_int[i]);
+				l.add(pseudo.get(i));
+				map.put(score_int[i], l);
 			}
-			donnees[i][0]=r1.get(i);
-			donnees[i][1]=r2.get(i);
-			i++;
-		}			
+			else {
+				ArrayList<String> l = new ArrayList<String>();
+				l.add(pseudo.get(i));
+				map.put(score_int[i], l);
+			}
+		}
+        Arrays.sort(score_int, Collections.reverseOrder());
+        int index = 0;
+		String[][] donnees = new String[n][2];
+		int i=0;
+		while (i<n) {
+			for (String pseu : map.get(score_int[i])) {
+				donnees[i][0] = pseu;
+				donnees[i][1]=Integer.toString(score_int[i]);
+				if (pseu.equals(player.getPseudo()) && score_int[i].equals(score)) {
+					index = i;
+				}
+				i++;
+			}
+		}		
 		String[] titre= {"Pseudonyme","Score"};
 		JTable jtable = new JTable(donnees,titre) {
 	        private static final long serialVersionUID = 1L;
@@ -213,15 +322,17 @@ public class FenetreFin implements ActionListener{
 		jtable.setEnabled(false);
 		ArrayList<String> res1 = new ArrayList<String>();
 		ArrayList<String> res2 = new ArrayList<String>();
-		if (r1.size()>10) {
-			for (int k =0; k<10; k++) {
-				res1.add(r1.get(k));
-				res2.add(r2.get(k));
+		if (n>10) {
+			for (int k = 0; k<10; k++) {
+				res1.add(donnees[k][0]);
+				res2.add(donnees[k][1]);
 			}
 		}
 		else {
-			res1=r1;
-			res2=r2;
+			for (int k = 0; k<n; k++) {
+				res1.add(donnees[k][0]);
+				res2.add(donnees[k][1]);
+			}
 		}
 		try {
 			BufferedWriter writer = new BufferedWriter(new FileWriter(new File(System.getProperty("user.dir")+File.separator+"abcd.txt")));
