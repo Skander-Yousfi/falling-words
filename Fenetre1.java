@@ -12,90 +12,90 @@ import javax.swing.table.JTableHeader;
  * La classe Fenetre1 qui est la fenetre initiale du jeu sur laquelle on choisit notre pseudo.
  */
 public class Fenetre1 implements ActionListener{
-	
+
 	/** La fenetre f. */
 	private JFrame f;
-	
+
 	/** L'image représentant le nom de notre jeu. */
 	private ImageIcon img = new ImageIcon("img.jpeg");
-	
+
 	/** Le bouton "Règles du jeu" qui permet d'ouvrir un fenetre pop-up qui contient les règles du jeu. */
 	private JButton r = new JButton("Règles du jeu");
-	
+
 	/** Le bouton "High Scores" qui permet d'ouvrir un fenetre pop-up qui contient les high scores. */
 	private JButton hs = new JButton("High Scores");
-	
+
 	/** Le bouton "Jouer" qui permet de lancer une partie. */
 	private JButton button = new JButton("Jouer");
-	
+
 	/** Le bouton qui apparait sur la fenetre pop up lorsqu'une sauvegarde est détectée. */
 	private JButton b1 = new JButton("Reprendre la partie sauvegardée");
-	
+
 	/** Le bouton qui apparait sur la fenetre pop up lorsqu'une sauvegarde est détectée. */
 	private JButton b2 = new JButton("Commencer une nouvelle partie");
-	
+
 	/** La zone de saisie t dans laquelle on peut entrer notre pseudonyme. */
 	private JTextField t = new JTextField("Pseudonyme");
-	
+
 	/** Le label "Entrez votre pseudonyme pour jouer : " à côté de la zone de saisie. */
 	private JLabel label = new JLabel("Entrez votre pseudonyme pour jouer : ");
-	
+
 	/** Le Jlabel qui contient l'image. */
 	private JLabel icone = new JLabel(img, JLabel.CENTER);
-	
+
 	/** Le panel qui contient tous les objets. */
 	private JPanel conteneur = new JPanel();
-	
+
 	/** La liste qui contiendra tous les pseudos pour les high scores. */
 	private ArrayList<String> pseudo;
-	
+
 	/** La liste qui contiendra tous les high scores. */
 	private ArrayList<String> sc;
-	
-	/** Le Joueur associé à la partie éventuellemnt sauvegardée. */
+
+	/** Le Joueur associé à la partie éventuellement sauvegardée. */
 	private Player p ;
-	
-	/** Le Joueur associé à la partie éventuellemnt sauvegardée. */
-    private ArrayList<Words> l;
+
+	/** La liste complète de mots associée à la partie éventuellement sauvegardée. */
+	private ArrayList<Words> l;
+
+	/** La liste de mots affichés à l'écran associée à la partie éventuellement sauvegardée. */
+	private ArrayList<Words> screenWords; 
+
+	/** Le temps associé à la partie éventuellement sauvegardée. */
+	private Time time;
+
+	/** Une valeur associée à la partie éventuellement sauvegardée. */
+	private int score;
+
+	/** Une valeur associée à la partie éventuellement sauvegardée. */
+	private int compteur;
+
+	/** Une valeur associée à la partie éventuellement sauvegardée. */
+	private int etape;
+
+	/** Une valeur associée à la partie éventuellement sauvegardée. */
+	private int add;
+
+	/** Une valeur associée à la partie éventuellement sauvegardée. */
+	private int index; 
     
-    /** Le Joueur associé à la partie éventuellemnt sauvegardée. */
-    private ArrayList<Words> screenWords; 
-    
-    /** Le Joueur associé à la partie éventuellemnt sauvegardée. */
-    private Time time;
-    
-    /** Une valeur associée à la partie éventuellemnt sauvegardée. */
-    private int score;
-    
-    /** Une valeur associée à la partie éventuellemnt sauvegardée. */
-    private int compteur;
-    
-    /** Une valeur associée à la partie éventuellemnt sauvegardée. */
-    private int etape;
-    
-    /** Une valeur associée à la partie éventuellemnt sauvegardée. */
-    private int add;
-    
-    /** Une valeur associée à la partie éventuellemnt sauvegardée. */
-    private int index; 
-    
-    /** Une valeur associée à la partie éventuellemnt sauvegardée. */
-    private int caract; 
-    
-    /** Une valeur associée à la partie éventuellemnt sauvegardée. */
-    private int mots;
-    
-    /** Une valeur associée à la partie éventuellemnt sauvegardée. */
-    private int corrMots; 
-    
-    /** Une chaine de caractères associée à la partie éventuellemnt sauvegardée. */
-    private String text;
-    
-    /** Un Timer associée à la partie éventuellemnt sauvegardée. */
-    private Timer timer; 
-    
-    /** Un Timer associée à la partie éventuellemnt sauvegardée. */
-    private Timer chrono;
+	/** Une valeur associée à la partie éventuellement sauvegardée. */
+	private int caract; 
+
+	/** Une valeur associée à la partie éventuellement sauvegardée. */
+	private int mots;
+
+	/** Une valeur associée à la partie éventuellement sauvegardée. */
+	private int corrMots; 
+
+	/** La chaine de caractères dans la barre de saisie associée à la partie éventuellement sauvegardée. */
+	private String text;
+
+	/** Un Timer associée à la partie éventuellement sauvegardée. */
+	private Timer timer; 
+
+	/** Un Timer associée à la partie éventuellement sauvegardée. */
+	private Timer chrono;
 	
 	/**
 	 * Instancie une nouvelle Fenetre1 et l'affiche à l'écran.
@@ -215,8 +215,6 @@ public class Fenetre1 implements ActionListener{
 			diag.setVisible(true);
 		}
 		if (evt.getSource() == b1) {
-	//		File file = new File(System.getProperty("user.dir")+File.separator+t.getText()+"-save.txt");
-	//		file.delete();
 			new Partie(p, l, screenWords, time, score, compteur, etape, add, index, caract, mots, corrMots, text, timer, chrono);
 			f.dispose();
 		}
@@ -236,13 +234,13 @@ public class Fenetre1 implements ActionListener{
 	}
 	
 	/**
-	 * Methode permettant de récupérer les high scores.
+	 * Methode permettant de récupérer les high scores et de les stocker dans un JTable.
 	 *
 	 * @return jtable le tableau que l'on va afficher
 	 */
 	public JTable tableau () {
 		try {
-			BufferedReader reader = new BufferedReader(new FileReader(new File (System.getProperty("user.dir")+File.separator+"abcd.txt")));
+			BufferedReader reader = new BufferedReader(new FileReader(new File (System.getProperty("user.dir")+File.separator+"high-scores.txt")));
 			String line = reader.readLine();
 			if (line == null) {
 				pseudo = new ArrayList<String>();
