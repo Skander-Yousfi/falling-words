@@ -16,7 +16,7 @@ public class ALTextField implements KeyListener, ActionListener{
 	/** La partie en cours*/
 	private Partie p;
 	
-	/** La fenetre de jeu associée à la partie */
+	/** La fenêtre de jeu associée à la partie */
 	private FenetreJeu f;
 	
 	/** Le bouton "Sauvegarder la partie et quitter" */
@@ -31,10 +31,10 @@ public class ALTextField implements KeyListener, ActionListener{
 	/** Le bouton "Non". On quitte la partie sans sauvegarder. */
 	private JButton b4 = new JButton("Ne pas sauvegarder et quitter");
 	
-	/** La fenetre pop up qui apparait lorsque le jeu est en pause */
+	/** La fenêtre pop up qui apparait lorsque le jeu est en pause */
 	private JDialog diag;
 	
-	/** La fenetre pop up qui apparait lorsque l'on souhaite sauvegarder une partie lorsqu'une sauvegarde existe déjà. */
+	/** La fenêtre pop up qui apparait lorsqu'on souhaite sauvegarder une partie déjà sauvegardée. */
 	private JDialog diag2;
 	
 	/**
